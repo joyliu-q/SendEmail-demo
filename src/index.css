@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Mahee:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body h1{
+  font-family: 'Mukta Mahee', sans-serif;
+}
+
+body h2{
+  font-family: 'Mukta Mahee', sans-serif;
+}

@@ -1,0 +1,52 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sendmaildemo-main-171854-authRole",
+      "UnauthRoleArn": "arn:aws:iam::611774879215:role/amplify-sendmaildemo-main-171854-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::611774879215:role/amplify-sendmaildemo-main-171854-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-sendmaildemo-main-171854-175356-deployment",
+      "UnauthRoleName": "amplify-sendmaildemo-main-171854-unauthRole",
+      "StackName": "amplify-sendmaildemo-main-171854",
+      "StackId": "arn:aws:cloudformation:us-west-2:611774879215:stack/amplify-sendmaildemo-main-171854/8a7e3bf0-521d-11eb-ab27-06cec0598c81",
+      "AmplifyAppId": "d2a32hi52mvu35"
+    },
+    "categories": {
+      "auth": {
+        "sendmaildemoa6bdf74b": {
+          "hostedUIProviderCreds": "[]"
+        }
+      },
+      "function": {
+        "sendmaildemoa6bdf74bCreateAuthChallenge": {
+          "CHALLENGEANSWER": "TypingThisForMoreSecurity:D"
+        },
+        "sendmaildemoa6bdf74bDefineAuthChallenge": {},
+        "sendmaildemoa6bdf74bPostConfirmation": {
+          "GROUP": "viewData"
+        },
+        "sendmaildemoa6bdf74bPreSignup": {
+          "DOMAINWHITELIST": "wavelf.org"
+        }
+      }
+    }
+  },
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sendmaildemo-main-171854-authRole",
+      "UnauthRoleArn": "arn:aws:iam::611774879215:role/amplify-sendmaildemo-main-171854-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::611774879215:role/amplify-sendmaildemo-main-171854-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-sendmaildemo-main-171854-deployment",
+      "UnauthRoleName": "amplify-sendmaildemo-main-171854-unauthRole",
+      "StackName": "amplify-sendmaildemo-main-171854",
+      "StackId": "arn:aws:cloudformation:us-west-2:611774879215:stack/amplify-sendmaildemo-main-171854/cf81ed90-52e1-11eb-be93-06e6d1ac322b",
+      "AmplifyAppId": "d2a32hi52mvu35"
+    },
+    "categories": {
+      "auth": {
+        "sendmaildemoa6bdf74b": {}
+      }
+    }
+  }
+}
