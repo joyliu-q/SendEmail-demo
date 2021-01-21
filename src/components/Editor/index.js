@@ -11,13 +11,25 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ""
+      content: "This is a test email from Wave. Please ignore."
     };
   }
 
   modules = {
     // #3 Add "image" to the toolbar
-    toolbar: [["bold", "italic", "image"]],
+    toolbar: [
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'font': [] }],
+      ["bold", "italic", "underline"],
+      ['blockquote', 'code-block'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+      [{ 'color': [] }, { 'background': [] }],    
+      [{ 'align': [] }],
+      ["image"]
+    ],
     // # 4 Add module and upload function
     imageUploader: {
       upload: file => {
@@ -61,16 +73,27 @@ class Editor extends Component {
     "imageBlot" // #5 Optinal if using custom formats
   ];
 
+  handleQuill = (event) => {
+    this.setState({
+      content: event
+    })
+    this.props.onChangeContent(event);
+    //console.log(event)
+  }
+  
   render() {
     return (
       <ReactQuill
         theme="snow"
         modules={this.modules}
         formats={this.formats}
-        value={this.state.text}
-      >
-        <div className="my-editing-area" />
-      </ReactQuill>
+
+        name="content"
+        value={this.state.content}
+        placeholder="For name customization, use {{name}} in the place of the customized first name of the recipient."
+        className="emailContent"
+        onChange={this.handleQuill}
+      />
     );
   }
 }

@@ -9,7 +9,7 @@ import { listNewsletters } from '../../graphql/queries';
 import { getAccount } from './functions.js'
 
 // Editor: WIP
-//import Editor from '../Editor';
+import Editor from '../Editor';
 
 const AWS = require('aws-sdk')
 
@@ -304,28 +304,25 @@ export const SendEmail_manual = () => {
     const initialEmailData = Object.freeze({
         recipient: "",
         subject: "",
-        content: "This is a test email from Wave. Please ignore.",
         uselogo: false,
     });
     
     const [formData, updateFormData] = React.useState(initialEmailData);
-
+    const [contentData, updateContentData] = React.useState("");
+    
+    const getContent = (childData) => {
+        updateContentData({content: childData});
+        return childData
+    }
+  
     const handleChange = (event) => {
         updateFormData({
             ...formData,
-      
             // Trimming any whitespace
             [event.target.name]: event.target.value.trim()
           });
-    }
-
-    const handleQuill = (event) => {
-        updateFormData({ 
-            ...formData,
-            
-            content: event 
-        });
         console.log(formData)
+        console.log(contentData)
     }
 
     const handleCheck = (event) => {
@@ -338,8 +335,10 @@ export const SendEmail_manual = () => {
     const submitEmailForm = (event) => {
         event.preventDefault()
         console.log(formData);
-        if (formData.subject != "" && formData.content != "" && formData.recipient != "") {
-            updateEmailTemplate(formData.subject, formData.content, formData.uselogo);
+        console.log("Content")
+        console.log(contentData)
+        if (formData.subject != "" && contentData.content != "" && formData.recipient != "") {
+            updateEmailTemplate(formData.subject, contentData.content, formData.uselogo);
             sendBulkEmails(formData.recipient);
             alert('Sending emails. Please wait.');
         }
@@ -373,12 +372,9 @@ export const SendEmail_manual = () => {
                 placeholder="Email Subject"
                 onChange={handleChange}
             />
-            <ReactQuill 
+            <Editor 
                 name="content"
-                value={formData.content}
-                placeholder="For name customization, use {{name}} in the place of the customized first name of the recipient."
-                className="emailContent"
-                onChange={handleQuill}
+                onChangeContent={getContent}
             />
             <br/>
             <input 
@@ -396,7 +392,6 @@ export const SendEmail_manual = () => {
             </Button>
             <br/>
             <hr/>
-            {/*<Editor/>*/}
             <Typography.Header2
                 id="error"
                 color={Colors.WLF_ORANGE}
