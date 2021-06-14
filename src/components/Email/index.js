@@ -106,7 +106,7 @@ const updateEmailTemplate = (subject, content, logo) => {
   });
 };
 
-const sendBulkEmails = async (recipients) => {
+const sendBulkEmails = async (recipients, templateName) => {
   AWS.config.region = "us-west-2";
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: "us-west-2:7cfb5c42-5177-4fc0-a45a-7e2ab2e1a345",
@@ -130,7 +130,7 @@ const sendBulkEmails = async (recipients) => {
             console.log("Address: " + info[0]);
             console.log("Name: " + info[1]);*/
 
-      // In the actual Wave feature, it gets the emails based of the functions.js, but here as a project, only joy@wavelf.org is available
+      // In the actual Wave feature, it gets the emails based of the functions.js, but here as a project, only one email is available
 
       //let sourceEmail = getAccount(email.toLowerCase());
       let sourceEmail = "hello@hackor.org"; //:D
@@ -139,7 +139,7 @@ const sendBulkEmails = async (recipients) => {
           Destination: {
             ToAddresses: [email],
           },
-          ReplacementTemplateData: '{ "name":"Wave User"}',
+          ReplacementTemplateData: '{ "name":"Hackor"}',
         });
       } else {
         accounts[sourceEmail] = [
@@ -147,7 +147,7 @@ const sendBulkEmails = async (recipients) => {
             Destination: {
               ToAddresses: [email],
             },
-            ReplacementTemplateData: '{ "name":"Wave User"}',
+            ReplacementTemplateData: '{ "name":"Hackor"}',
           },
         ];
       }
@@ -174,8 +174,8 @@ const sendBulkEmails = async (recipients) => {
             Value: "Null",
           },
         ],
-        Source: "hello@hackor.org",
-        Template: "wave_test_template",
+        Source: "HackOR Hackathon <hello@hackor.org>",
+        Template: templateName,
         Destinations: batched_destination[batch],
         DefaultTemplateData: '{ "name":"Hackor"}',
       };
@@ -304,8 +304,7 @@ const sendBulkEmails_auto = async (recipient) => {
 export const SendEmail_manual = () => {
   const initialEmailData = Object.freeze({
     recipient: "",
-    subject: "",
-    uselogo: false,
+    templateName: "",
   });
 
   const [formData, updateFormData] = React.useState(initialEmailData);
@@ -338,7 +337,15 @@ export const SendEmail_manual = () => {
     console.log(formData);
     console.log("Content");
     console.log(contentData);
-    if (
+
+    if (formData.recipient != "" && formData.templateName != "") {
+      sendBulkEmails(formData.recipient, formData.templateName);
+      alert("Sending emails. Please wait.");
+    } else {
+      alert("Form fields cannot be blank");
+    }
+
+    /*if (
       formData.subject != "" &&
       contentData.content != "" &&
       formData.recipient != ""
@@ -352,7 +359,7 @@ export const SendEmail_manual = () => {
       alert("Sending emails. Please wait.");
     } else {
       alert("Form fields cannot be blank");
-    }
+    }*/
   };
 
   return (
@@ -362,22 +369,15 @@ export const SendEmail_manual = () => {
         id="emailRecipient"
         name="recipient"
         onChange={handleChange}
-        placeholder="List of emails, separatec by commas (no space). Example: bob@gmail.com,jim@gmail.com
+        placeholder="List of emails, separated by commas (no space). Example: bob@gmail.com,jim@gmail.com
                 "
       />
       <hr />
-      <Typography.Header2 fontSize="24px">Email Content</Typography.Header2>
-      <Typography.Header2 fontSize="16px">
-        Note: due to the database being currently down, using {"{{name}}"}
-        in the email content would return the user's name "Wave User" rather
-        than the name itself.
-      </Typography.Header2>
       <Form.Input
-        name="subject"
-        placeholder="Email Subject"
+        name="templateName"
+        placeholder="Email Template Name"
         onChange={handleChange}
       />
-      <Editor name="content" onChangeContent={getContent} />
       <br />
       <input
         type="checkbox"
@@ -393,7 +393,7 @@ export const SendEmail_manual = () => {
       </Button>
       <br />
       <hr />
-      <Typography.Header2 id="error" color={Colors.WLF_ORANGE} />
+      <Typography.Header2 id="error" color={Colors.HACKOR_TURQOUISE} />
       <div id="response" />
     </form>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { device } from "@/theme";
-import { WLF_PURPLE } from "@/styles/Colors";
+import { HACKOR_DARK } from "@/styles/Colors";
 
 export const NavbarContainer = styled.header`
   font-family: "Mukta Mahee", sans-serif;
@@ -20,7 +20,6 @@ export const NavbarContainer = styled.header`
   }
   @media ${device.tabletL} {
   }
-
 `;
 
 export const NavbarInner = styled.div`
@@ -50,7 +49,7 @@ export const BrandText = styled.img`
   }
 
   @media ${device.tablet} {
-    width: 20em;
+    width: 10em;
     display: block;
   }
   height: auto;
@@ -97,7 +96,7 @@ export const Button = styled.button`
   padding: 10px 25px 10px 25px;
   border-radius: 40px;
   border: none;
-  background-color: ${WLF_PURPLE};
+  background-color: ${HACKOR_DARK};
   color: #eeeeee !important;
   font-weight: 600;
   font-size: 16px;
@@ -135,7 +134,7 @@ export const Hamburger = styled.div`
 
   position: fixed;
   right: 40px;
-  background-color: 'white';
+  background-color: "white";
   width: 30px;
   height: 30px;
 
@@ -145,7 +144,7 @@ export const Hamburger = styled.div`
 export const Bar = styled.p`
   border-radius: 25px;
   height: 3px;
-  background-color: #50B0A0;
+  background-color: #50b0a0;
   margin: 6px 0;
   transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
   width: ${(props) => 30 - props.num * 7 + "px"};
@@ -160,36 +159,33 @@ export const Bar = styled.p`
 `;
 
 export const SideBar = styled.div`
-    position: fixed;
-    top: 0;
-    max-height: 100vh;
-	height: 100%;
-    width: calc(40%);
-    right: ${props => (props.show ? '0' : 'calc(-40%)')};
-    background-color: #ffffff;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  position: fixed;
+  top: 0;
+  max-height: 100vh;
+  height: 100%;
+  width: calc(40%);
+  right: ${(props) => (props.show ? "0" : "calc(-40%)")};
+  background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-    padding-top: 50px;
+  padding-top: 50px;
 
-    & a{
-        color: rgba(31,45,61,.5);
-        font-size: 16px;
-        text-decoration: none;
-        transition: 0.2s;
-        font-weight: 600;
-    }
-    & a:hover{
-        color: rgba(31,45,61,1);
-    }
+  & a {
+    color: rgba(31, 45, 61, 0.5);
+    font-size: 16px;
+    text-decoration: none;
+    transition: 0.2s;
+    font-weight: 600;
+  }
+  & a:hover {
+    color: rgba(31, 45, 61, 1);
+  }
 
-    & p{
-        margin-bottom: 15px;
-    }
-`
-
-
-
+  & p {
+    margin-bottom: 15px;
+  }
+`;
 
 export const NavbarDropdown = styled.div`
     position: absolute;
@@ -222,7 +218,7 @@ export const NavItem = styled.p`
   text-align: center;
 
   &:hover {
-    border-bottom: 2px solid ${WLF_PURPLE};
+    border-bottom: 2px solid ${HACKOR_DARK};
   }
 
   &:hover a {

@@ -1,25 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import {
-  HeaderImage,
   AboutDescription,
-  Highlight,
-  HighlightStyle1,
-  Button,
-  MediumImage,
   MetaContainer,
-  MediumContainer,
   SubHeaderContainer,
-  DescItem,
-  DescImage,
-  Input,
-  NewsLetter,
   Error,
   Popup,
-  FeaturedImage,
-  FeaturedLink,
-  ContainerInner,
-  Announcements,
 } from "./styles";
 import { Colors, Typography, Form } from "@/styles";
 

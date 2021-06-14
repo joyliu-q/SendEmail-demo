@@ -16,11 +16,13 @@ import {
 } from "./styles";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Logo from "./logo.svg";
-import LogoTextFull from "./logo with type (1).svg";
+import LogoTextFull from "./logo with type.svg";
 import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react";
 
 const Navbar = () => {
   const [emailShow, setEmailShow] = useState(false);
+  const [templatesShow, setTemplatesShow] = useState(false);
+
   const [slide, toggleSlide] = useState(false);
 
   return (
@@ -48,16 +50,23 @@ const Navbar = () => {
               </NavbarDropdown>
             )}
           </NavItem>
+          <NavItem
+            onMouseEnter={() => setTemplatesShow(true)}
+            onMouseLeave={() => setTemplatesShow(false)}
+          >
+            <Link>Email Templates</Link>
+            {templatesShow && (
+              <NavbarDropdown>
+                <Link to="/templates/upload">
+                  <DropdownItem>Upload Template</DropdownItem>
+                </Link>
+                <Link to="/templates/create">
+                  <DropdownItem>Create Template</DropdownItem>
+                </Link>
+              </NavbarDropdown>
+            )}
+          </NavItem>
           <AmplifySignOut button-text="Custom Text"></AmplifySignOut>
-          {/*<NavItem>
-            <Link to="/logout">Logout</Link>
-          </NavItem>*/}
-          {/* <NavItem>
-            <Link to="/blog">Blog</Link>
-          </NavItem> */}
-          {/* <NavItem style={{ border: 'none' }}>
-            {accountStatus}
-          </NavItem> */}
         </Links>
         <Hamburger slide={slide} onClick={() => toggleSlide(!slide)}>
           <div
@@ -99,25 +108,18 @@ const Navbar = () => {
           <NavItem>
             <Link to="/login">Login</Link>
           </NavItem>
-          {/*
-          <NavItem>
-            <Link to="/courses">Courses</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/speakers">Speakers</Link>
-          </NavItem>
-          */}
           <NavItem>
             <Link to="/email/manual">Email: Custom Recipients</Link>
           </NavItem>
           <NavItem>
             <Link to="/email/auto">Email: Send to Newsletter List</Link>
           </NavItem>
-          {/*}
           <NavItem>
-            <Link to="/sign-in">Dashboard</Link>
+            <Link to="/templates/upload">Upload Templates</Link>
           </NavItem>
-          */}
+          <NavItem>
+            <Link to="/templates/create">Create Templates</Link>
+          </NavItem>
         </SideBar>
       </NavbarInner>
     </NavbarContainer>
