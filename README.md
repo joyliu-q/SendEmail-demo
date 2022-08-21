@@ -1,5 +1,5 @@
 # SendMail Demo
-SendMail Demo is a web-based platform for sending custom newsletters using Amazon Webserice's Simple Email Services (AWS SES).
+SendMail Demo is a web-based platform for sending custom newsletters using AWS Simple Email Services (SES).
 
 ##### Table of Contents  
 - [Installation](#installation)
